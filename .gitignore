@@ -1,0 +1,7 @@
+.terraform
+.DS_Store
+
+### STS ###
+.project
+.idea/
+.vscode
