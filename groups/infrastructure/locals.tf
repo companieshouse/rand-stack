@@ -4,7 +4,7 @@ locals {
   name_prefix = "${local.stack_name}-${var.environment}"
 
   stack_secrets             = jsondecode(data.vault_generic_secret.secrets.data_json)
-  domain_name               = "${local.service_name}.${local.hosted_zone_name}"
+  domain_name               = "${local.stack_name}.${local.hosted_zone_name}"
 
   vpc_name                  = local.stack_secrets["vpc_name"]
   admin_prefix_list_name    = local.stack_secrets["admin_prefix_list_name"]
