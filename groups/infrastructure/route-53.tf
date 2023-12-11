@@ -1,5 +1,3 @@
-
-
 resource "aws_acm_certificate" "certificate" {
   domain_name       = local.domain_name
   validation_method = "DNS"
