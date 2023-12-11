@@ -16,6 +16,10 @@ module "alb" {
       listener_config = {
         default_action_type = "fixed-response"
         port                = 443
+        fixed_response = {
+            message_body = "unauthorized"
+            status_code = 401
+        }
       }
     }
   }
