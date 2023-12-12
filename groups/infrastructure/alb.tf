@@ -4,7 +4,7 @@ module "alb" {
   environment         = var.environment
   service             = local.service_name
   ssl_certificate_arn = aws_acm_certificate.certificate.arn
-  subnet_ids          = data.aws_subnets.private.subnet_ids
+  subnet_ids          = data.aws_subnets.private.ids
   vpc_id              = data.aws_vpc.vpc.id
 
   create_security_group = true
@@ -17,8 +17,8 @@ module "alb" {
         default_action_type = "fixed-response"
         port                = 443
         fixed_response = {
-            message_body = "unauthorized"
-            status_code = 401
+          message_body = "unauthorized"
+          status_code  = 401
         }
       }
     }
