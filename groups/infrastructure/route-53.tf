@@ -6,7 +6,7 @@ resource "aws_acm_certificate" "certificate" {
     Environment = var.environment
   }
 
-  # This is recommended since this is attached to ALB listener§
+  # This is recommended since this is attached to ALB listener
   lifecycle {
     create_before_destroy = true
   }
