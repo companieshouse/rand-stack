@@ -5,6 +5,11 @@ resource "aws_acm_certificate" "certificate" {
   tags = {
     Environment = var.environment
   }
+
+  # This is recommended since this is attached to ALB listener§
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_route53_record" "route" {
@@ -26,4 +31,13 @@ resource "aws_route53_record" "route" {
 resource "aws_acm_certificate_validation" "certificate" {
   certificate_arn         = aws_acm_certificate.certificate.arn
   validation_record_fqdns = [for record in aws_route53_record.route : record.fqdn]
+}
+
+resource "aws_route53_record" "a_record" {
+  allow_overwrite = true
+  name            = local.domain_name
+  type            = "A"
+  zone_id         = data.aws_route53_zone.hosted_zone.id
+  records         = [module.alb.application_load_balancer_dns_name]
+  ttl             = 60
 }

@@ -4,7 +4,7 @@ module "alb" {
   environment         = var.environment
   service             = local.service_name
   ssl_certificate_arn = aws_acm_certificate.certificate.arn
-  subnet_ids          = data.aws_subnets.private.ids
+  subnet_ids          = data.aws_subnets.public.ids
   vpc_id              = data.aws_vpc.vpc.id
 
   create_security_group = true
