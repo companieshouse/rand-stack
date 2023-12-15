@@ -6,6 +6,7 @@ module "alb" {
   ssl_certificate_arn = aws_acm_certificate.certificate.arn
   subnet_ids          = data.aws_subnets.public.ids
   vpc_id              = data.aws_vpc.vpc.id
+  internal            = false
 
   create_security_group = true
 
