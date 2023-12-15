@@ -9,7 +9,8 @@ locals {
 
   vpc_name                = local.stack_secrets["vpc_name"]
   admin_prefix_list_name  = local.stack_secrets["admin_prefix_list_name"]
+  on_premise_prefix_list_name  = local.stack_secrets["on_premise_prefix_list_name"]
   hosted_zone_name        = local.stack_secrets["hosted_zone_name"]
-  asg_ingress_prefix_list = [data.aws_ec2_managed_prefix_list.admin.id]
+  asg_ingress_prefix_list = [data.aws_ec2_managed_prefix_list.admin.id, data.aws_ec2_managed_prefix_list.on_premise.id]
   public_subnet_pattern   = local.stack_secrets["public_subnet_pattern"]
 }

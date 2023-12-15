@@ -32,3 +32,7 @@ data "aws_subnets" "public" {
 data "aws_ec2_managed_prefix_list" "admin" {
   name = local.admin_prefix_list_name
 }
+
+data "aws_ec2_managed_prefix_list" "on_premise" {
+  name = local.on_premise_prefix_list_name
+}
