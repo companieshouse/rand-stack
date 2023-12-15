@@ -38,6 +38,12 @@ resource "aws_route53_record" "a_record" {
   name            = local.domain_name
   type            = "A"
   zone_id         = data.aws_route53_zone.hosted_zone.id
-  records         = [module.alb.application_load_balancer_dns_name]
-  ttl             = 60
+
+  alias {
+    name                   = module.alb.application_load_balancer_dns_name
+    zone_id                = module.alb.application_load_balancer_zone_id
+    evaluate_target_health = false
+  }
+
+  ttl = 60
 }
