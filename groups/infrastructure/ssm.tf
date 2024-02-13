@@ -18,3 +18,5 @@ resource "aws_ssm_parameter" "rand_alb_sg" {
   value  = module.alb.security_group_id
   key_id = data.aws_kms_key.kms_key.id
 }
+
+
