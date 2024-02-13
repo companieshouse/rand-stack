@@ -10,8 +10,8 @@ module "alb" {
 
   create_security_group = true
 
-  ingress_prefix_list_ids = local.asg_ingress_prefix_list
-  ingress_cidrs           = local.asg_ingress_cidrs
+  ingress_prefix_list_ids = local.alb_ingress_prefix_list
+  ingress_cidrs           = local.alb_ingress_cidrs
   redirect_http_to_https  = true
   service_configuration = {
     default = {
