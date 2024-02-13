@@ -11,6 +11,7 @@ module "alb" {
   create_security_group = true
 
   ingress_prefix_list_ids = local.asg_ingress_prefix_list
+  ingress_cidrs = [data.aws_vpc.vpc.cidr_block]
   redirect_http_to_https  = true
   service_configuration = {
     default = {
