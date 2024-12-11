@@ -49,15 +49,21 @@ resource "aws_route53_record" "a_record" {
   }
 }
 
-resource "aws_route53_record" "a_record_alternative_1" {
-  allow_overwrite = true
-  name            = local.alternative_name1
-  type            = "A"
-  zone_id         = data.aws_route53_zone.hosted_zone.id
+# comment out as this was added manually (INC0471241)
+# and then it will fail with:
+#     Error: creating Route53 Record: operation error Route 53: ChangeResourceRecordSets, https response error StatusCode: 400,
+#            RequestID: 80ec3b1d-abec-4a5c-9281-d288a9aa8e00,
+#            InvalidChangeBatch: [RRSet of type A with DNS name pocs.rand.aws.chdev.org. is not permitted because a
+#            conflicting RRSet of type CNAME with the same DNS name already exists in zone aws.chdev.org.]
+# resource "aws_route53_record" "a_record_alternative_1" {
+#   allow_overwrite = true
+#   name            = local.alternative_name1
+#   type            = "A"
+#   zone_id         = data.aws_route53_zone.hosted_zone.id
 
-  alias {
-    name                   = module.alb.application_load_balancer_dns_name
-    zone_id                = module.alb.application_load_balancer_zone_id
-    evaluate_target_health = false
-  }
-}
+#   alias {
+#     name                   = module.alb.application_load_balancer_dns_name
+#     zone_id                = module.alb.application_load_balancer_zone_id
+#     evaluate_target_health = false
+#   }
+# }
