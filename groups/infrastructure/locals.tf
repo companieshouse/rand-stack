@@ -5,7 +5,9 @@ locals {
   kms_alias    = "alias/${var.aws_profile}/environment-services-kms"
 
   stack_secrets = jsondecode(data.vault_generic_secret.secrets.data_json)
-  domain_name   = "${local.stack_name}.${local.hosted_zone_name}"
+  domain_name   = "${local.stack_name}.${local.hosted_zone_name}"    #rand.---
+  alternative_name1 = "pocs.${local.domain_name}"                    #pocs.rand.---
+  alternative_names = [local.alternative_name1]
 
   vpc_name                    = local.stack_secrets["vpc_name"]
   admin_prefix_list_name      = local.stack_secrets["admin_prefix_list_name"]
